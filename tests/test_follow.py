@@ -1,4 +1,5 @@
 import pytest
+
 from api.models import Follow
 
 
@@ -13,7 +14,7 @@ class TestFollowAPI:
     @pytest.mark.django_db(transaction=True)
     def test_follow_not_auth(self, client, follow_1, follow_2):
         response = client.get('/api/v1/follow/')
-        assert response.status_code == 200,\
+        assert response.status_code == 200, \
             'Проверьте, что `/api/v1/follow/` при запросе без токена возвращаете статус 200'
 
     @pytest.mark.django_db(transaction=True)
@@ -24,7 +25,8 @@ class TestFollowAPI:
 
         test_data = response.json()
 
-        assert type(test_data) == list, 'Проверьте, что при GET запросе на `/api/v1/follow/` возвращается список'
+        assert type(
+            test_data) == list, 'Проверьте, что при GET запросе на `/api/v1/follow/` возвращается список'
 
         assert len(test_data) == Follow.objects.count(), \
             'Проверьте, что при GET запросе на `/api/v1/follow/` возвращается весь список подписок'
@@ -44,7 +46,8 @@ class TestFollowAPI:
             'в поле `following` должен быть `username`'
 
     @pytest.mark.django_db(transaction=True)
-    def test_follow_create(self, user_client, follow_2, follow_3, user, user_2, another_user):
+    def test_follow_create(self, user_client, follow_2, follow_3, user, user_2,
+                           another_user):
         follow_count = Follow.objects.count()
 
         data = {}
@@ -73,7 +76,8 @@ class TestFollowAPI:
             'на уже подписанного автора должен возвращаться статус 400'
 
     @pytest.mark.django_db(transaction=True)
-    def test_follow_search_filter(self, user_client, follow_1, follow_2, follow_3, follow_4,
+    def test_follow_search_filter(self, user_client, follow_1, follow_2,
+                                  follow_3, follow_4,
                                   user, user_2, another_user):
         follow_count = Follow.objects.count()
 
