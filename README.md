@@ -1,7 +1,7 @@
 # api_final
 
 
-Проект API для Django блога (базе Django Rest Framework)
+Проект API для Django блога (на базе Django Rest Framework)
 
 Доступные методы:
 
