@@ -1,2 +1,4 @@
 # api_final
-api final
+
+
+Проект API для Django блога
